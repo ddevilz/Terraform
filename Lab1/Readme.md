@@ -1,4 +1,4 @@
-# Recent Commands
+# Lab1 Commands
 
 ## Tools setup
 
