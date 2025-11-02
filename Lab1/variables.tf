@@ -36,10 +36,10 @@ variable "regions" {
 variable "regions_instance_count" {
   type = map(string)
 
-  validation {
-    condition     = var.regions_instance_count % 2 == 0
-    error_message = "regions_instance_count must be a map with even number of elements"
-  }
+  # validation {
+  #   condition     = var.regions_instance_count % 2 == 0
+  #   error_message = "regions_instance_count must be a map with even number of elements"
+  # }
 }
 
 variable "regions_set" {

@@ -33,6 +33,33 @@ terraform plan -var-file .\env\prod.tfvars
 terraform apply -var-file .\env\prod.tfvars
 ```
 
+## Repository setup
+
+```powershell
+git init
+```
+
+## Terraform workspaces used
+
+```powershell
+terraform workspace list
+terraform workspace new dev
+terraform plan -var-file .\env\dev.tfvars
+terraform apply -var-file .\env\dev.tfvars
+terraform workspace new prod
+terraform plan -var-file .\env\prod.tfvars
+terraform apply -var-file .\env\prod.tfvars
+terraform workspace select dev
+
+```
+
+### Workspace state locations (local backend)
+
+- Local state files are stored under `terraform.tfstate.d/<workspace>/terraform.tfstate`.
+- Example from this lab:
+  - `terraform.tfstate.d/dev/terraform.tfstate`
+  - `terraform.tfstate.d/prod/terraform.tfstate`
+
 ## Setting sensitive variables (api_key)
 
 ```powershell
