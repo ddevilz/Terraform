@@ -38,3 +38,7 @@ output "sku_settings_kind" {
 output "alpha_random_string" {
   value = module.alpha.random_string
 }
+
+output "bravo_name" {
+  value = module.bravo.name
+}

@@ -41,3 +41,8 @@ module "alpha" {
   source  = "hashicorp/module/random"
   version = "1.0.0"
 }
+
+module "bravo" {
+  source = "./modules/bravo"
+  name   = "Bravo"
+}
