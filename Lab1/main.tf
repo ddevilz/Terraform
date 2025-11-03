@@ -10,3 +10,34 @@ locals {
   max_instance_count = 10
 }
 
+resource "random_string" "list" {
+
+  count = length(var.regions)
+
+  length  = 6
+  upper   = false
+  special = false
+}
+
+resource "random_string" "map" {
+
+  for_each = var.regions_instance_count
+
+  length  = 6
+  upper   = false
+  special = false
+}
+
+resource "random_string" "if" {
+
+  count = var.enable_logging ? 1 : 0
+
+  length  = 6
+  upper   = false
+  special = false
+}
+
+module "alpha" {
+  source  = "hashicorp/module/random"
+  version = "1.0.0"
+}

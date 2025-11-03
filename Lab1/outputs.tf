@@ -34,3 +34,7 @@ output "primary_region_instance_count" {
 output "sku_settings_kind" {
   value = var.sku_settings.kind
 }
+
+output "alpha_random_string" {
+  value = module.alpha.random_string
+}

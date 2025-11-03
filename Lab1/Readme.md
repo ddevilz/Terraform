@@ -50,8 +50,16 @@ terraform workspace new prod
 terraform plan -var-file .\env\prod.tfvars
 terraform apply -var-file .\env\prod.tfvars
 terraform workspace select dev
-
 ```
+
+## Iteration patterns used in main.tf
+
+- **List iteration with `count`**
+  - Resource: `random_string.list`
+  - Uses `count = length(var.regions)` to create one resource instance per list element.
+- **Map iteration with `for_each`**
+  - Resource: `random_string.map`
+  - Uses `for_each = var.regions_instance_count` to create instances keyed by map keys.
 
 ### Workspace state locations (local backend)
 

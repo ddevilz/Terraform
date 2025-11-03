@@ -1,0 +1,15 @@
+{
+    "Modules": [
+        {
+            "Key": "",
+            "Source": "",
+            "Dir": "."
+        },
+        {
+            "Key": "alpha",
+            "Source": "registry.terraform.io/hashicorp/module/random",
+            "Version": "1.0.0",
+            "Dir": ".terraform/modules/alpha"
+        }
+    ]
+}
