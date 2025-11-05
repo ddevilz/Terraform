@@ -42,3 +42,16 @@ output "alpha_random_string" {
 output "bravo_name" {
   value = module.bravo.name
 }
+
+output "regional_stamp" {
+  value = module.regional_stamp[*].random_string
+}
+
+output "regionA" {
+  value = module.regional_stamp[0].name
+}
+
+output "regionB" {
+  value = module.regional_stamp[1].name
+}
+
