@@ -23,6 +23,21 @@ locals {
       max_node_count = 4
     }
   ]
+
+  regional_stamps_map = {
+    "foo" = {
+      region         = var.regions[0]
+      name           = "Alpha"
+      min_node_count = 5
+      max_node_count = 6
+    },
+    "bar" = {
+      region         = var.regions[1]
+      name           = "Bravo"
+      min_node_count = 3
+      max_node_count = 4
+    }
+  }
 }
 
 resource "random_string" "list" {
@@ -74,6 +89,17 @@ module "regional_stamp" {
   max_node_count = local.regional_stamps[count.index].max_node_count
 }
 
+module "regional_stamp_map" {
+
+  source = "./modules/regional-stamp"
+
+  for_each = local.regional_stamps_map
+
+  region         = each.value.region
+  name           = each.value.name
+  min_node_count = each.value.min_node_count
+  max_node_count = each.value.max_node_count
+}
 
 # module "regionA" {
 #   source         = "./modules/regional-stamp"

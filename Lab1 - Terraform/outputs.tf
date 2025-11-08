@@ -55,3 +55,10 @@ output "regionB" {
   value = module.regional_stamp[1].name
 }
 
+output "regional_stamp_map" {
+  value = module.regional_stamp_map["foo"].name
+}
+
+output "regional_stamp_map_bar" {
+  value = module.regional_stamp_map["bar"].name
+}

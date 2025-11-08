@@ -61,6 +61,35 @@ terraform workspace select dev
   - Resource: `random_string.map`
   - Uses `for_each = var.regions_instance_count` to create instances keyed by map keys.
 
+## Locals and computed values
+
+- **`local.environment_prefix`** builds a composite name using `application_name`, `environment`, and a random suffix: `${var.application_name}_${var.environment}_${random_string.name.result}`.
+- **Min/max instance count** defined in locals and referenced in `variables.tf` validation.
+
+## Conditional resource example
+
+- **`random_string.if`** is created only when `var.enable_logging` is true using `count = var.enable_logging ? 1 : 0`.
+
+## Modules used
+
+- **`module.alpha`**: example external/registry module usage.
+- **`module.bravo`**: local module with an input `name`.
+- **`module.regional_stamp` (list + count)**:
+  - Iterates over `local.regional_stamps` with `count` and indexes values via `local.regional_stamps[count.index].*`.
+- **`module.regional_stamp_map` (map + for_each)**:
+  - Iterates over `local.regional_stamps_map` with `for_each` and uses `each.value.*`.
+
+## Output patterns demonstrated
+
+- **Direct variable/local/module attributes**
+  - `application_name`, `environment_prefix`, `module.bravo.name`, `module.alpha.random_string`
+- **Splat on counted modules**
+  - `module.regional_stamp[*].random_string` gathers an attribute from all instances.
+- **Indexing into counted modules**
+  - `module.regional_stamp[0].name` (regionA), `module.regional_stamp[1].name` (regionB)
+- **Map access on for_each modules**
+  - `module.regional_stamp_map["foo"].name`, `module.regional_stamp_map["bar"].name`
+
 ### Workspace state locations (local backend)
 
 - Local state files are stored under `terraform.tfstate.d/<workspace>/terraform.tfstate`.
