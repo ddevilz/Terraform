@@ -1,0 +1,10 @@
+# Terraform local directories (providers, modules, plugin cache)
+**/.terraform/*
+
+# Terraform state files
+terraform.tfstate
+terraform.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
